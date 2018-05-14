@@ -2,10 +2,9 @@ package com.zhenyu.model;
 
 import com.zhenyu.model.common.SerializableAndId;
 
-public class UserAuths extends SerializableAndId {
-    private String userId;
+public class UserAuths extends SerializableAndId{
 
-    private String identityType;
+    private String userId;
 
     private String identity;
 
@@ -15,20 +14,23 @@ public class UserAuths extends SerializableAndId {
 
     private String col2;
 
-    public String getUserId() {
+    private String identityType;
+
+
+    public String getIdentityType() {
+		return identityType;
+	}
+
+	public void setIdentityType(String identityType) {
+		this.identityType = identityType;
+	}
+
+	public String getUserId() {
         return userId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
-    }
-
-    public String getIdentityType() {
-        return identityType;
-    }
-
-    public void setIdentityType(String identityType) {
-        this.identityType = identityType == null ? null : identityType.trim();
     }
 
     public String getIdentity() {
@@ -62,4 +64,6 @@ public class UserAuths extends SerializableAndId {
     public void setCol2(String col2) {
         this.col2 = col2 == null ? null : col2.trim();
     }
+
+
 }

@@ -2,7 +2,7 @@ package com.zhenyu.model;
 
 import java.io.Serializable;
 
-public class RoleAuthKey implements Serializable{
+public class RoleAuthKey  implements Serializable {
     private String roleId;
 
     private String authId;

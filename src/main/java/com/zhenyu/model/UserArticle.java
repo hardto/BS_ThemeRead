@@ -4,12 +4,15 @@ import java.util.Date;
 
 import com.zhenyu.model.common.SerializableAndId;
 
-public class UserArticle extends SerializableAndId {
+public class UserArticle extends SerializableAndId{
+
     private String userId;
 
     private String title;
 
     private String introduce;
+
+    private String content;
 
     private String author;
 
@@ -25,7 +28,6 @@ public class UserArticle extends SerializableAndId {
 
     private String col2;
 
-    private String content;
 
     public String getUserId() {
         return userId;
@@ -49,6 +51,14 @@ public class UserArticle extends SerializableAndId {
 
     public void setIntroduce(String introduce) {
         this.introduce = introduce == null ? null : introduce.trim();
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
     public String getAuthor() {
@@ -105,13 +115,5 @@ public class UserArticle extends SerializableAndId {
 
     public void setCol2(String col2) {
         this.col2 = col2 == null ? null : col2.trim();
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
     }
 }

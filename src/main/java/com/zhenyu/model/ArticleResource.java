@@ -2,10 +2,12 @@ package com.zhenyu.model;
 
 import com.zhenyu.model.common.SerializableAndId;
 
-public class ArticleResource extends SerializableAndId {
+public class ArticleResource extends SerializableAndId{
+
     private String articleId;
 
     private String image;
+
 
     public String getArticleId() {
         return articleId;

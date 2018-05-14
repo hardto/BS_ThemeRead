@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhenyu.mapper.TypeMapper" >
+  <resultMap id="BaseResultMap" type="com.zhenyu.model.Type" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="col" property="col" jdbcType="VARCHAR" />
+    <result column="hot" property="hot" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, parent_id, name, col, hot , descs 
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_type
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <select id="getPosition" resultType="string">
+  	select name from t_type where id = (select 
+    parent_id
+    from t_type
+    where 
+    name
+    =
+   #{0}) 
+  </select>
+  
+  
+  <select id="getThisPosition" resultType="string">
+  select 
+    id
+    from t_type
+    where 
+    name
+    =
+   #{0}
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  <select id="getTypes" resultType="com.zhenyu.model.Type">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_type
+    where 
+    parent_id 
+    is
+    null
+  </select>
+  
+  <select id="getAllTypes" resultType="com.zhenyu.model.Type">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_type
+    
+ 
+  </select>
+  
+<select id="getChildrenTypes" resultMap="BaseResultMap" resultType="com.zhenyu.model.Type">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_type
+    where 
+    parent_id 
+    =
+    #{0}
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_type
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhenyu.model.Type" >
+    insert into t_type (id, parent_id, name, 
+      col, hot ,descs)
+    values (#{id,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{col,jdbcType=VARCHAR}, #{hot,jdbcType=INTEGER} ,#{descs,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhenyu.model.Type" >
+    insert into t_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="col != null" >
+        col,
+      </if>
+      <if test="hot != null" >
+        hot,
+      </if>
+      <if test="descs != null" >
+        descs,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="col != null" >
+        #{col,jdbcType=VARCHAR},
+      </if>
+      <if test="hot != null" >
+        #{hot,jdbcType=INTEGER},
+      </if>
+      <if test="descs != null" >
+        #{descs,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhenyu.model.Type" >
+    update t_type
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="col != null" >
+        col = #{col,jdbcType=VARCHAR},
+      </if>
+      <if test="hot != null" >
+        hot = #{hot,jdbcType=INTEGER},
+      </if>
+      <if test="descs != null" >
+        col = #{descs,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhenyu.model.Type" >
+    update t_type
+    set parent_id = #{parentId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      col = #{col,jdbcType=VARCHAR},
+      hot = #{hot,jdbcType=INTEGER},
+      descs = #{descs,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateTypeById"  >
+    update t_type
+    set 
+      
+      col = #{2},
+      
+      descs = #{1}
+    where id = #{0}
+  </update>
+   <select id="getId" resultType="int">
+    select 
+    max(CAST(id AS SIGNED)) from t_type
+    </select>
+    
+    
+    <select id="get2Types" resultMap="BaseResultMap"  resultType="com.zhenyu.model.Type">
+  	select 
+    <include refid="Base_Column_List" />
+    from t_type
+    where 
+    parent_id 
+    is
+    not
+    null
+  </select>
+    
+</mapper>

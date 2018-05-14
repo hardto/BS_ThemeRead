@@ -2,10 +2,12 @@ package com.zhenyu.model;
 
 import com.zhenyu.model.common.SerializableAndId;
 
-public class Role extends SerializableAndId {
+public class Role extends SerializableAndId{
+
     private String roleName;
 
     private String col1;
+
 
     public String getRoleName() {
         return roleName;

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhenyu.mapper.RoleAuthMapper" >
+  <resultMap id="BaseResultMap" type="com.zhenyu.model.RoleAuth" >
+    <id column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <id column="auth_id" property="authId" jdbcType="VARCHAR" />
+    <result column="col1" property="col1" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    role_id, auth_id, col1
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.zhenyu.model.RoleAuthKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_role_auth
+    where role_id = #{roleId,jdbcType=VARCHAR}
+      and auth_id = #{authId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.zhenyu.model.RoleAuthKey" >
+    delete from t_role_auth
+    where role_id = #{roleId,jdbcType=VARCHAR}
+      and auth_id = #{authId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhenyu.model.RoleAuth" >
+    insert into t_role_auth (role_id, auth_id, col1
+      )
+    values (#{roleId,jdbcType=VARCHAR}, #{authId,jdbcType=VARCHAR}, #{col1,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhenyu.model.RoleAuth" >
+    insert into t_role_auth
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="authId != null" >
+        auth_id,
+      </if>
+      <if test="col1 != null" >
+        col1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="authId != null" >
+        #{authId,jdbcType=VARCHAR},
+      </if>
+      <if test="col1 != null" >
+        #{col1,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhenyu.model.RoleAuth" >
+    update t_role_auth
+    <set >
+      <if test="col1 != null" >
+        col1 = #{col1,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=VARCHAR}
+      and auth_id = #{authId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhenyu.model.RoleAuth" >
+    update t_role_auth
+    set col1 = #{col1,jdbcType=VARCHAR}
+    where role_id = #{roleId,jdbcType=VARCHAR}
+      and auth_id = #{authId,jdbcType=VARCHAR}
+  </update>
+</mapper>

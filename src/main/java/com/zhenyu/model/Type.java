@@ -2,16 +2,27 @@ package com.zhenyu.model;
 
 import com.zhenyu.model.common.SerializableAndId;
 
-public class Type extends SerializableAndId {
+public class Type extends SerializableAndId{
+
     private String parentId;
 
     private String name;
 
-    private String col1;
+    private String col;
 
     private Integer hot;
 
-    public String getParentId() {
+    private String descs;
+
+    public String getDescs() {
+		return descs;
+	}
+
+	public void setDescs(String descs) {
+		this.descs = descs;
+	}
+
+	public String getParentId() {
         return parentId;
     }
 
@@ -27,12 +38,12 @@ public class Type extends SerializableAndId {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getCol1() {
-        return col1;
+    public String getCol() {
+        return col;
     }
 
-    public void setCol1(String col1) {
-        this.col1 = col1 == null ? null : col1.trim();
+    public void setCol(String col) {
+        this.col = col == null ? null : col.trim();
     }
 
     public Integer getHot() {

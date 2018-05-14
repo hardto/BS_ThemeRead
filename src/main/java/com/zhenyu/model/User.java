@@ -4,16 +4,19 @@ import java.util.Date;
 
 import com.zhenyu.model.common.SerializableAndId;
 
-public class User extends SerializableAndId {
-    private String username;
+public class User extends SerializableAndId{
+
+    private String account;
 
     private String password;
 
-    private String realname;
+    private String realName;
 
     private Integer age;
 
     private String sex;
+
+    private String introduce;
 
     private String address;
 
@@ -36,15 +39,16 @@ public class User extends SerializableAndId {
     private String col1;
 
     private String col2;
+    
+    public User(){}
 
-    private String introduce;
 
-    public String getUsername() {
-        return username;
+    public String getAccount() {
+        return account;
     }
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setAccount(String account) {
+        this.account = account == null ? null : account.trim();
     }
 
     public String getPassword() {
@@ -55,12 +59,12 @@ public class User extends SerializableAndId {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getRealname() {
-        return realname;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setRealname(String realname) {
-        this.realname = realname == null ? null : realname.trim();
+    public void setRealName(String realName) {
+        this.realName = realName == null ? null : realName.trim();
     }
 
     public Integer getAge() {
@@ -77,6 +81,14 @@ public class User extends SerializableAndId {
 
     public void setSex(String sex) {
         this.sex = sex == null ? null : sex.trim();
+    }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce == null ? null : introduce.trim();
     }
 
     public String getAddress() {
@@ -165,13 +177,5 @@ public class User extends SerializableAndId {
 
     public void setCol2(String col2) {
         this.col2 = col2 == null ? null : col2.trim();
-    }
-
-    public String getIntroduce() {
-        return introduce;
-    }
-
-    public void setIntroduce(String introduce) {
-        this.introduce = introduce == null ? null : introduce.trim();
     }
 }

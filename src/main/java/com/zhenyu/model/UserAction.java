@@ -2,7 +2,8 @@ package com.zhenyu.model;
 
 import com.zhenyu.model.common.SerializableAndId;
 
-public class UserAction extends SerializableAndId {
+public class UserAction extends SerializableAndId{
+
     private String userId;
 
     private String typeId;
@@ -12,6 +13,7 @@ public class UserAction extends SerializableAndId {
     private String col1;
 
     private String col2;
+
 
     public String getUserId() {
         return userId;

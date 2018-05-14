@@ -2,8 +2,11 @@ package com.zhenyu.model;
 
 import com.zhenyu.model.common.SerializableAndId;
 
-public class ArticleComment extends SerializableAndId {
+public class ArticleComment extends SerializableAndId{
+
     private String articleId;
+
+    private String comment;
 
     private String userId;
 
@@ -13,7 +16,6 @@ public class ArticleComment extends SerializableAndId {
 
     private String col2;
 
-    private String comment;
 
     public String getArticleId() {
         return articleId;
@@ -21,6 +23,14 @@ public class ArticleComment extends SerializableAndId {
 
     public void setArticleId(String articleId) {
         this.articleId = articleId == null ? null : articleId.trim();
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment == null ? null : comment.trim();
     }
 
     public String getUserId() {
@@ -53,13 +63,5 @@ public class ArticleComment extends SerializableAndId {
 
     public void setCol2(String col2) {
         this.col2 = col2 == null ? null : col2.trim();
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment == null ? null : comment.trim();
     }
 }

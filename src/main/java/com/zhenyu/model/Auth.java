@@ -2,10 +2,12 @@ package com.zhenyu.model;
 
 import com.zhenyu.model.common.SerializableAndId;
 
-public class Auth extends SerializableAndId {
+public class Auth extends SerializableAndId{
+
     private String authName;
 
     private String col;
+
 
     public String getAuthName() {
         return authName;

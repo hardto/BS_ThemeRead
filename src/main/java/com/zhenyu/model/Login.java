@@ -4,7 +4,8 @@ import java.util.Date;
 
 import com.zhenyu.model.common.SerializableAndId;
 
-public class Login extends SerializableAndId {
+public class Login extends SerializableAndId{
+
     private String userId;
 
     private Date loginTime;
@@ -12,6 +13,7 @@ public class Login extends SerializableAndId {
     private String loginIp;
 
     private String col1;
+
 
     public String getUserId() {
         return userId;
