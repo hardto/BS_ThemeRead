@@ -6,6 +6,10 @@ import java.io.IOException;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.zhenyu.common.encry.DBEncryUtils;
 import com.zhenyu.model.User;
 import com.zhenyu.model.msg.CensusMsg;
+import com.zhenyu.model.msg.CollectMsg;
 import com.zhenyu.service.SignService;
 import com.zhenyu.service.ViewService;
 
@@ -25,6 +30,7 @@ import com.zhenyu.service.ViewService;
 @SessionAttributes("USERID")
 @RequestMapping(value="/manager")
 public class ManagerController {
+	Logger logger = Logger.getLogger(ManagerController.class);
 	@Resource
 	private ViewService viewService;
 	@Resource
@@ -44,8 +50,13 @@ public class ManagerController {
 			}else{
 				pwd = DBEncryUtils.AESEncode(pwd);
 				User user = signService.validateUserWithAcc(usm,pwd);
+				logger.info("授权上面一步");
+				Subject subject = SecurityUtils.getSubject();
+				 UsernamePasswordToken token = new UsernamePasswordToken(usm, pwd);
+				 subject.login(token);
 				if(user != null){
 					map.addAttribute("USERID", user.getId());
+					logger.info("设置了id");
 					return "content/admin";
 				}else{
 					return "redirect:login";
@@ -98,6 +109,11 @@ public class ManagerController {
 	@RequestMapping(value="/census",method=RequestMethod.POST)
 	public @ResponseBody CensusMsg census(){
 		return viewService.getCensus();
+	}
+	
+	@RequestMapping(value="/collect",method=RequestMethod.POST)
+	public @ResponseBody CollectMsg collect(){
+		return viewService.getCollect();//collect
 	}
 	
 	

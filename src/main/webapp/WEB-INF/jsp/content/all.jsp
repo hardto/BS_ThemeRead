@@ -80,6 +80,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li class=""><a href="all" style="letter-spacing: 5px">所有</a></li>
                     <li class=""><a href="others" style="letter-spacing: 5px">其他</a></li>
                     <li class=""><a href="robot">Robe</a></li>
+                    <li class="dropdown">
+						<a href="" style="letter-spacing: 5px" class="dropdown-toggle" data-toggle="dropdown">
+							我的<span style="color: #CCCCCC;"class="caret"></span>
+						</a>
+						 <ul class="dropdown-menu">
+                        	<li><a href="mine#section1">个人信息</a></li>
+                        	<li class="divider"></li>
+                        	<li><a href="mine#section2">反馈</a></li>
+                        	<li class="divider"></li>
+                        	<li><a href="javascript:void(0)" id="exit">退出</a></li>
+                    	</ul>
+					</li>
                 </ul>
             </div>
         </div>
@@ -144,9 +156,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <script type="text/javascript">
 	$(document).ready(function(e) {
+	
 		var server = location.pathname.split('/')[1];
 		var web = "http://"+location.host+"/"+server+"/content/types";
 		var web2 = "http://"+location.host+"/"+server+"/content/getRecommend";
+		var reset = "http://"+location.host+"/"+server+"/content/logout";
+		$("#exit").click(function(){
+		 $.ajax({
+            type: "post",
+            url: reset,
+            timeout : 3000,
+            async: false,
+            success: function(data){
+            
+            }});
+            window.location.href=indexUrl;
+	});
 	console.log(web2);
 		 $.ajax({
             type: "post",

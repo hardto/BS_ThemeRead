@@ -114,4 +114,8 @@
       col2 = #{col2,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  <select id="getId" resultType="int">
+    select 
+    max(CAST(id AS SIGNED)) from t_article_comment
+    </select>
 </mapper>

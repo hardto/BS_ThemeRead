@@ -30,11 +30,9 @@ if(null != s.getAttribute("USERID") && !"".equals(s.getAttribute("USERID"))){
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resource/scripts/jquery.tmpl.js"></script>
 <style>
-/* html {
-            margin:0 auto;
-            padding:0;
-            height: 100%;
-        }*/
+html,body {
+           width:100%;
+        }
 #index1 {
 	background-image:
 		url("${pageContext.request.contextPath}/resource/images/bk1.jpg");
@@ -174,7 +172,7 @@ h1{
 </head>
 <body onload="doSlide()">
 	<div id="index1">
-		<canvas id="myCanvas" width="1366" height="62">
+		<canvas id="myCanvas" width="100%" height="62">
     </canvas>
 
 		<a href="javascript:void(0);" class="unslider-arrow04 prev"><img
@@ -323,19 +321,20 @@ h1{
     });
 </script>
 	<script type="text/javascript">
+	var wid = document.body.clientWidth;
     var ctx=document.getElementById("myCanvas").getContext("2d");
     ctx.beginPath();
-    ctx.moveTo(1302,0);
-    ctx.lineTo(1366,0);
-    ctx.lineTo(1366,64);
+    ctx.moveTo(wid+11-64,0);
+    ctx.lineTo(wid+11,0);
+    ctx.lineTo(wid+11,64);
     ctx.closePath();
     ctx.fillStyle = 'rgba(173,216,230,0.5)';
     // 填充路径
     ctx.fill();
     ctx.beginPath();
-    ctx.moveTo(1302,0);
-    ctx.lineTo(1302,64);
-    ctx.lineTo(1366,64);
+    ctx.moveTo(wid+10-64,0);
+    ctx.lineTo(wid+10-64,64);
+    ctx.lineTo(wid+10,64);
     ctx.closePath();
     ctx.fillStyle = 'rgba(255,255,255,0.5)';
     // 填充路径

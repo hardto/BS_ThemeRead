@@ -68,13 +68,23 @@ body{
 	$("#search").click(function(){
 	debugger;
 	var music = $("input").val();
-	
-	playmusic(music);
+	var shuzu = music.split(" ");
+	var name="";
+	var singer = "";
+	if(shuzu.length>1){
+		for(var i = 0;i<shuzu.length-1;i++){
+			name += shuzu[i];
+		}
+		singer = shuzu[shuzu.length-1];
+	}else if(shuzu.length==1){
+		name = music;
+	}
+	playmusic(name,singer);
 	});
 	});
-	function playmusic(name){
+	function playmusic(name,singer){
 	$("#myModal").modal('show');
-			if(name != "" && name != null && name != undefined){
+			if(name != "" && name != null && name != undefined && (singer == null || singer == undefined || singer=="")){
 			var url = "http://" +location.hostname+":8888"+"/music?song_name="+name;
 		 $.ajax({
             type: "post",
@@ -86,10 +96,10 @@ body{
              success: function(data){
             
              }});
-			}else{
+			}else if(name != "" && name != null && name != undefined && singer != null && singer != undefined && singer!=""){
 			value = window.location.search.split("=")[1]
 	var server = location.pathname.split('/')[1];
-	var url = "http://" +location.hostname+":8888"+"/music?song_name="+value;
+	var url = "http://" +location.hostname+":8888"+"/music?song_name="+name+"&singer="+singer;
 		 $.ajax({
             type: "post",
             url: url,

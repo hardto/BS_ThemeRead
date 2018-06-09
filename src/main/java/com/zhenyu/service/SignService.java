@@ -119,6 +119,13 @@ public class SignService {
 		return false;
 	}
 	
+	public boolean isLogonAll(String email, String phone,String account) {
+		if(userMapper.selectByEmail(email)!=null||userMapper.selectByPhone(phone)!=null||userMapper.selectByAccount(account)!=null){
+			return true;
+		}
+		return false;
+	}
+	
 	public boolean isLogonEmail(String email){
 		if(userMapper.selectByEmail(email)!=null){
 			return true;
@@ -150,5 +157,7 @@ public class SignService {
 		int ii = userMapper.updateByEmail(email, pwd);
 		return i>0&&ii>0;
 	}
+
+	
 
 }

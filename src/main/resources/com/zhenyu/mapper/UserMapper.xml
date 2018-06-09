@@ -45,6 +45,13 @@
     where email = #{0}
   </select>
   
+   <select id="selectByAccount" resultMap="BaseResultMap" resultType="com.zhenyu.model.User" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where account = #{0}
+  </select>
+  
   <select id="selectByPhone" resultMap="BaseResultMap" resultType="com.zhenyu.model.User" >
     select 
     <include refid="Base_Column_List" />

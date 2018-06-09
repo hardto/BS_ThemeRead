@@ -4,11 +4,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+     <link href="http://libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resource/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
     <script src="${pageContext.request.contextPath}/resource/scripts/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resource/scripts/bootstrap.min.js"></script>
     <title>阅读-毕设</title>
     <style>
+    .fa-heart{
+color:red
+
+}
         html,body{
             padding: 0 0;
             width: 100%;
@@ -84,17 +89,23 @@
 
         </div>
         <div class="footer" >
-            <span>来源于</span>&nbsp;&nbsp;<a href="http://news.sina.com.cn/" style="margin-left: 75%">新浪新闻</a>
+            <span>来源于网络</span>&nbsp;&nbsp;<a href="javascript:void(0)" style="margin-left: 75%">
+            
+            <i class="fa fa-heart-o heart"  trans=""></i>
+            
+            </a>
         </div>
     </div>
 <script>
     $(function () {
     	var server = location.pathname.split('/')[1];
 		var web = "http://"+location.host+"/"+server+"/content/posoition";
+		var saveUrl = "http://"+location.host+"/"+server+"/content/saveArticle";
 		var values = decodeURI(window.location.search.split("&")[1])
      	var value = decodeURI(window.location.search.split("&")[0]).split("=")[1];
      	var type = values.split("=")[1];
      	$("div.title").text(value);
+     	$("i.fa").prop("trans",type);
 		$.ajax({
             type: "get",
             url: web,
@@ -116,8 +127,29 @@
 		//将文字经过处理 放在不同的li上！
 		//文字处理：每一行判断
 		$("div.article").html(article);
-        
+        $("i.fa").click(function(){
+        if($(this).hasClass('fa fa-heart-o')){
+		   $(this).removeClass('fa fa-heart-o');
+		   $(this).addClass('fa fa-heart');
+		  
+		}
+		debugger;
+        	$.ajax({
+            type: "post",
+            url: saveUrl,
+            async: false,
+            data : {
+            	"content" : article,
+            	"type" : type,
+            	"title" : value
+            },
+            success: function(data){
+             	
+             }
+        });
 		
+        
+        });
 		
     });
 </script>

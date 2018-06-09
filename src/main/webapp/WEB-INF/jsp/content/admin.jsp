@@ -1,8 +1,8 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
+<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>后台管理-毕设</title>
@@ -112,9 +112,14 @@
     <div class="row">
         <nav class="col-sm-3" id="myScrollspy">
             <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="405">
+                <shiro:hasRole name="管理员A">
+                <shiro:hasPermission name="编辑">                
                 <li>
                     <a href="#section1">管理类别</a>
                 </li>
+                </shiro:hasPermission> 
+                </shiro:hasRole>
+                 <shiro:hasAnyRoles  name="管理员A,管理员B">
                 <li>
                     <a href="#section2">每日推荐</a>
                 </li>
@@ -132,9 +137,12 @@
                         </li>
                     </ul>
                 </li>
+                </shiro:hasAnyRoles>
             </ul>
         </nav>
         <div class="col-sm-9">
+         <shiro:hasRole name="管理员A">
+                <shiro:hasPermission name="编辑">  
             <div id="section1">
 				<div class="col-sm-1"></div>
 				<div class="col-sm-10">
@@ -157,6 +165,9 @@
 				                
 
             </div>
+            </shiro:hasPermission> 
+                </shiro:hasRole>
+            <shiro:hasAnyRoles  name="管理员A,管理员B">
             <div id="section2" style="margin-top: 145px;">
 			  <form class="form-horizontal " method="post" id="recommendForm" action="recommend" role="form" enctype="multipart/form-data">
 			                    <div class="form-group">
@@ -239,21 +250,13 @@
 
             </div>
             <div id="section42">
-                <br> 未完待续
-                <br> 未完待续
-                <br> 未完待续
-                <br> 未完待续
-                <br> 未完待续
-                <br> 未完待续
-                <br> 未完待续
-                <br> 未完待续
-                <br> 未完待续
-                <br> 未完待续
-                <br> 未完待续
-                <br> 未完待续
-                <br> 未完待续
-                <br> 未完待续
+                 <div id="chartmain2" style="width:600px; height: 400px;">
+               
+               
+               
+               </div>
             </div>
+                </shiro:hasAnyRoles >
         </div>
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -333,6 +336,70 @@
 		var param =location.search;
 		var web6 = "http://"+location.host+"/"+server+"/manager/census"; 
 		
+
+
+		var web66 = "http://"+location.host+"/"+server+"/manager/collect"; 
+
+
+
+$.ajax({
+            type: "post",
+            url: web66,
+            timeout : 3000,
+            async: false,
+            success: function(data) {
+            debugger;
+            var resu = data.tables;
+            var names = [];
+            var nums = [];
+            Object.keys(resu).forEach(function(key){
+				names.push(key);
+				nums.push(resu[key]);
+
+});
+            //指定图标的配置和数据
+        var option = {
+            title:{
+                text:'阅读类别统计-毕设'
+            },
+            tooltip:{},
+            legend:{
+                data:['类别收藏统计']
+            },
+            xAxis:{
+                data:names
+            },
+            yAxis:{
+
+            },
+            series:[{
+                name:'收藏量',
+                type:'line',
+                data:nums
+            }]
+        };
+                
+        //初始化echarts实例
+        var myChart = echarts.init(document.getElementById('chartmain2'));
+
+        //使用制定的配置项和数据显示图表
+        myChart.setOption(option);
+            debugger;
+            },
+            error: function(mes) {
+                console.log(mes.responseText);
+            }
+        });
+
+
+
+
+
+
+
+
+
+
 		
 		  $.ajax({
             type: "post",

@@ -13,6 +13,8 @@ public interface UserMapper {
     
     User selectByEmail(String email);
     
+    User selectByAccount(String account);
+    
     User selectByPhone(String phone);
 
     int insertSelective(User record);

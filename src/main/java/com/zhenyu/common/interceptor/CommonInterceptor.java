@@ -7,18 +7,19 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 public class CommonInterceptor implements HandlerInterceptor{
 
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
 		Object sessionObj = request.getSession().getAttribute("USERID");  
-	    if(sessionObj!=null) {   
+	    if(sessionObj!=null&&!"".equals(sessionObj)) {   
 	      return true;  
 	    }   
 	    /*以weblog/blog/abs为例
 	    /weblog
 	    /weblog/blog/das
-	    /blog/das*/
+	    /blog/das*/ 
 	    System.out.println(request.getContextPath());
 	    /*
 	    System.out.println(request.getRequestURI());
@@ -28,4 +29,5 @@ public class CommonInterceptor implements HandlerInterceptor{
 	    return false;  
 	}
 
+	
 }

@@ -56,11 +56,12 @@ public class SignUpController {
 		String ip = WebUtil.getIpAddress(req);
 		boolean result = false;
 		user.setPassword(DBEncryUtils.AESEncode(user.getPassword()));
-		if(!signService.isLogon(user.getEmail(), user.getPhone())){
+		if(!signService.isLogonAll(user.getEmail(), user.getPhone(),user.getAccount())){
 			result = signService.saveUserInfo(user,ip);
 		}
 		if(result){
 			map.addAttribute("USERID", user.getId());
+			map.addAttribute("USERNAME", user.getId());
 			return "redirect:../content/index";
 		}else{
 			return "sign/register";
@@ -76,9 +77,44 @@ public class SignUpController {
 		}
 		//return "redirect:login";
 	}
-	
+	/**
+	 * 登录验证码获取
+	 * @param email
+	 * @param phone
+	 * @param random
+	 * @param res
+	 */
 	@RequestMapping("/getCode")
 	public void getCode(String email,String phone,String random,HttpServletResponse res){
+		if(signService.isLogon(email, phone)){
+			String code = EmailContent.VerificationCodes();
+			map.put(random, code);
+			try {
+				MailUtils.sendEmail(code, email);
+				
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			try {
+				res.getWriter().print("-1");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	/**
+	 * 注册验证码获取
+	 * @param email
+	 * @param phone
+	 * @param random
+	 * @param res
+	 */
+	@RequestMapping("/getCodee")
+	public void getCodee(String email,String phone,String random,HttpServletResponse res){
 		if(!signService.isLogon(email, phone)){
 			String code = EmailContent.VerificationCodes();
 			map.put(random, code);

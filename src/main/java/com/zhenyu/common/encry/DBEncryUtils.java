@@ -2,6 +2,7 @@ package com.zhenyu.common.encry;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -84,7 +85,9 @@ public class DBEncryUtils {
         return null;         
     }
     public static void main(String[] args) {
-		System.out.println(AESEncode("lizhenyu"));
+		System.out.println(AESEncode("136505"));
+		/*URL urlOfClass = DBEncryUtils.class.getClassLoader().getResource("org/slf4j/spi/LocationAwareLogger.class");
+		System.out.println(urlOfClass);;*/
 	}
 
 }

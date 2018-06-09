@@ -15,6 +15,9 @@
 <!--<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
         -->
 <style>
+body,html{
+height:100%;
+}
 form {
 	margin-top: 20%;
 }
@@ -248,11 +251,12 @@ label {
 								"random" : random
 							},
 					success : function(data){
+					debugger;
 					if(data.trim().toLowerCase() == val){
 					
 					$.ajax({type : "post",
 					url : "addUserId",
-					async : true,
+					async : false,
 					data: {"id":id}});
 					
 					

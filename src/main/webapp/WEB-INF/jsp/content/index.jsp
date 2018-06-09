@@ -40,19 +40,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="banner">
 	<div class="container">
 		<div class="header">
-			<div class="col-md-7 logo">
+			<div class="col-md-5 logo">
 				<a href="index.html"><h1>Theme-Reading</h1></a>
 			</div>
 			<div class="col-md-5 details">
 				<!-- <h2 class="pull-right" style="letter-spacing: 15px">主题阅读</h2> -->
 				<form action="others" method="post" class="navbar-form navbar-left form-inline">
                         <div class="form-group has-feedback">
-                            <input style="padding-left: 30px;" type="text" class="form-control" name="music" placeholder="请输入检索信息" id="music">
+                            <input style="padding-left: 30px;" type="text" class="form-control" name="music" placeholder="缓存检索，请输入类别" id="music">
                         	<span style="color: #000000;" class="glyphicon glyphicon-search form-control-feedback"></span>
                         </div>
                         <button type="submit" class="btn btn-success" id="musicsubmit">检索</button>
                 </form>
 				<div class="clearfix"> </div>
+			</div>
+			<div class="col-md-2 logo" style="margin-top:25px">
+				<h4>欢迎您，<a href="mine#section1">${sessionScope.USERNAME}</a></h4>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
@@ -72,6 +75,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li class=""><a href="all" style="letter-spacing: 5px">所有</a></li>
 					<li class=""><a href="others" style="letter-spacing: 5px">其他</a></li>
 					<li class=""><a href="robot" >Robe</a></li>
+					<li class="dropdown">
+						<a href="" style="letter-spacing: 5px" class="dropdown-toggle" data-toggle="dropdown">
+							我的<span style="color: #CCCCCC;"class="caret"></span>
+						</a>
+						 <ul class="dropdown-menu">
+                        	<li><a href="mine#section1">个人信息</a></li>
+                        	<li class="divider"></li>
+                        	<li><a href="mine#section2">反馈</a></li>
+                        	<li class="divider"></li>
+                        	<li><a href="javascript:void(0)" id="exit">退出</a></li>
+                    	</ul>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -98,7 +113,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h3>智能推送，火热类别</h3>
 			</div>
 			<div class="wel-bottom">
-				<div class="col-md-6 wel-left" >
+				<div class="col-md-6 wel-left" id="left1">
 					<%-- <div class="wel-block">
 						<div class="wel-img">
 							<img src="${pageContext.request.contextPath}/resource/images/w6.jpg" alt="" class="img-responsive">
@@ -120,7 +135,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="clearfix"> </div>
 					</div> --%>
 				</div>
-				<div class="col-md-6 wel-right">
+				<div class="col-md-6 wel-right" id="right1">
 					<%-- <div class="wel-block">
 						<div class="wel-img">
 							<img src="${pageContext.request.contextPath}/resource/images/w3.jpg" alt="" class="img-responsive">
@@ -149,13 +164,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 <!--welcome end here-->
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >免费网站模板</a></div>
 <!--testimonial start here-->
 <div class="testimo" id="collection" name="collection">
 	<div class="container">
 		<div class="testimo-main">
-			<h3>Nor again is there anyone who loves</h3>
-			<p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account </p>
+			<h3>为您呈现最好的阅读体验</h3>
+			<p>下面是您收藏过的类别</p>
 		</div>
 	</div>
 </div>
@@ -165,68 +179,128 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<div class="admissions-main">
 			<div class="admission-top">
-				<h3>Itaque earum rerum hic tenetur</h3>
+				<h3>收藏类别</h3>
 			</div>
 			<div class="admission-bottom">
-				<div class="col-md-6 admission-left">
-					<span class="quot1"> </span>
-					<div class="quot-text">
-						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-						<h4>Neque porro quisquam est, qui dolorem</h4>
+				<div class="col-md-6 wel-left" id="left2">
+					<%-- <div class="wel-block">
+						<div class="wel-img">
+							<img src="${pageContext.request.contextPath}/resource/images/w6.jpg" alt="" class="img-responsive">
+						</div>
+						<div class="wel-text">
+							<h4>Temporibus autem</h4>
+							<p>To take a trivial example, which of us ever undertakes laborious physical exercise</p>
+						</div>
+						<div class="clearfix"> </div>
 					</div>
-					<div class="clearfix"> </div>
+					<div class="wel-block">
+						<div class="wel-img">
+							<img src="${pageContext.request.contextPath}/resource/images/w2.jpg" alt="" class="img-responsive">
+						</div>
+						<div class="wel-text">
+							<h4>Temporibus autem</h4>
+							<p>To take a trivial example, which of us ever undertakes laborious physical exercise</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div> --%>
 				</div>
-				<div class="col-md-6 admission-left">
-					<span class="quot1"> </span>
-					<div class="quot-text">
-						<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-						<h4>Neque porro quisquam est, qui dolorem</h4>
+				<div class="col-md-6 wel-right" id="right2">
+					<%-- <div class="wel-block">
+						<div class="wel-img">
+							<img src="${pageContext.request.contextPath}/resource/images/w3.jpg" alt="" class="img-responsive">
+						</div>
+						<div class="wel-text">
+							<h4>Temporibus autem</h4>
+							<p>To take a trivial example, which of us ever undertakes laborious physical exercise</p>
+						</div>
+						<div class="clearfix"> </div>
 					</div>
+					<div class="wel-block">
+						<div class="wel-img">
+							<img src="${pageContext.request.contextPath}/resource/images/w5.jpg" alt="" class="img-responsive">
+						</div>
+						<div class="wel-text">
+							<h4>Temporibus autem</h4>
+							<p>To take a trivial example, which of us ever undertakes laborious physical exercise</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="clearfix"> </div> --%>
+				</div>
 					<div class="clearfix"> </div>
 				</div>
 				<div class="clearfix"> </div>
 			</div>
+			
+			
+			<div class="admission-top" style="margin-top:150px">
+				<h3>收藏文章</h3>
+			</div>
+			<div class="admission-bottom">
+				<div class="col-md-6 wel-left" id="left3">
+					<%-- <div class="wel-block">
+						<div class="wel-img">
+							<img src="${pageContext.request.contextPath}/resource/images/w6.jpg" alt="" class="img-responsive">
+						</div>
+						<div class="wel-text">
+							<h4>Temporibus autem</h4>
+							<p>To take a trivial example, which of us ever undertakes laborious physical exercise</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="wel-block">
+						<div class="wel-img">
+							<img src="${pageContext.request.contextPath}/resource/images/w2.jpg" alt="" class="img-responsive">
+						</div>
+						<div class="wel-text">
+							<h4>Temporibus autem</h4>
+							<p>To take a trivial example, which of us ever undertakes laborious physical exercise</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div> --%>
+				</div>
+				<div class="col-md-6 wel-right" id="right3">
+					<%-- <div class="wel-block">
+						<div class="wel-img">
+							<img src="${pageContext.request.contextPath}/resource/images/w3.jpg" alt="" class="img-responsive">
+						</div>
+						<div class="wel-text">
+							<h4>Temporibus autem</h4>
+							<p>To take a trivial example, which of us ever undertakes laborious physical exercise</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="wel-block">
+						<div class="wel-img">
+							<img src="${pageContext.request.contextPath}/resource/images/w5.jpg" alt="" class="img-responsive">
+						</div>
+						<div class="wel-text">
+							<h4>Temporibus autem</h4>
+							<p>To take a trivial example, which of us ever undertakes laborious physical exercise</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="clearfix"> </div> --%>
+				</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			
+			
+			
 		</div>
 	</div>
 </div>
 <!--our admissions end here-->
-<!--course strat here-->
-<div class="course">
-	<div class="col-md-6 course-left">
-
-	</div>
-	<div class="col-md-6 course-right">
-		<h6>voluptatem accusantium</h6>
-		<h3>What We Do</h3>
-		<p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire.</p>
-		<a href="contact.html">Contact Us</a>
-	</div>
-	<div class="clearfix"> </div>
-</div>
-<!--courses end here-->
-<!--footer start here-->
-<div class="footer">
-	<div class="container">
-		<div class="footer-main">
-			<h3>Newsletter Sign Up</h3>
-			<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-			<form>
-				<input type="text" value="Enter your email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your email';}">
-				<input type="submit" value="Subscribe">
-			</form>
-		</div>
-	</div>
-</div>
-<!--footer end here-->
 <!--copy right-->
 <div class="copy-rights">
 	<div class="container">
 		<div class="copy-rights-main">
-			<p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+			<p>Copyright &copy; 2018.designed by li zhenyu</p>
 		</div>
 	</div>
 </div>
-<!--/copy rights-->
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resource/scripts/jquery.tmpl.js"></script>
 <script type="text/x-jquery-tmpl" id="t1">
@@ -263,14 +337,95 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="clearfix"> </div>
 					</div>
 </script>
+<script type="text/x-jquery-tmpl" id="t4">
+					<div class="wel-block">
+						<div class="wel-img">
+							<a href="title?type=${'${'}name}" ><img src="${pageContext.request.contextPath}/${'${'}col}" alt="" class="img-responsive"></a>
+						</div>
+						<div class="wel-text">
+							<h4>${'${'}name}</h4>
+							<p>${'${'}descs}</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+</script>
+<script type="text/x-jquery-tmpl" id="t5">
+					<div class="wel-block">
+						<div class="wel-img">
+<a href="title?type=${'${'}name}">
+							<img src="${pageContext.request.contextPath}/${'${'}col}" alt="" class="img-responsive">
+</a>
+						</div>
+						<div class="wel-text">
+							<h4>${'${'}name}</h4>
+							<p>${'${'}descs}</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+</script>
+
+<!-- 文章部分 -->
+<script type="text/x-jquery-tmpl" id="t6">
+					<div class="wel-block">
+						<div class="wel-img">
+							<a href="selfread?title=${'${'}title}&type=${'${'}type}" ><img src="${pageContext.request.contextPath}/${'${'}img}" alt="" class="img-responsive"></a>
+						</div>
+						<div class="wel-text">
+							<h4>${'${'}title}</h4>
+							<p>${'${'}time}</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+</script>
+<script type="text/x-jquery-tmpl" id="t7">
+					<div class="wel-block">
+						<div class="wel-img">
+<a href="selfread?title=${'${'}title}&type=${'${'}type}">
+							<img src="${pageContext.request.contextPath}/${'${'}img}" alt="" class="img-responsive">
+</a>
+						</div>
+						<div class="wel-text">
+							<h4>${'${'}title}</h4>
+							<p>${'${'}time}</p>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+</script>
+
+
+
+
+
+
+
+
+
+
+
 
 
 <script type="text/javascript">
 	$(document).ready(function(e) {
 	console.log($.trim($("#recommend h2").text()).replace(/[\r\n]/g,"").length+"===="+$.trim($("#recommend p").text()).replace(/[\r\n]/g,"").length);
 	var server = location.pathname.split('/')[1];
+	var indexUrl = "http://"+location.host+"/"+server;
 	var web = "http://"+location.host+"/"+server+"/index/types";
 	var web2 = "http://"+location.host+"/"+server+"/content/getRecommend";
+	var webCollect = "http://"+location.host+"/"+server+"/content/getCollectsToTypes";
+	var articleUrl = "http://"+location.host+"/"+server+"/content/getCollected";
+	var reset = "http://"+location.host+"/"+server+"/content/logout";
+	var getRedisUrl = "http://"+location.host+"/"+server+"/content/getRedis";
+	$("#exit").click(function(){
+		 $.ajax({
+            type: "post",
+            url: reset,
+            timeout : 3000,
+            async: false,
+            success: function(data){
+            
+            }});
+            window.location.href=indexUrl;
+	});
 	console.log(web2);
 		 $.ajax({
             type: "post",
@@ -279,14 +434,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             async: false,
             dataType: "json",
             success: function(data){
-            debugger;
             	$("#t3").tmpl(data).appendTo($("#recommend"));   
             	$("#recommend+a").prop("href","readRecommend?id="+data.id);			
             }});
 	 $("#musicsubmit").click(function(e){
-	 debugger;
-            window.location = "http://"+location.host+"/"+server+"/content/others?music="+$("#music").val();
-            	e.preventDefault()
+	 e.preventDefault()
+	 		var val = $("#music").val();
+	 		//简单的排除工作
+	 		if(val.lenght>4 || val.length <2){
+	 			alert("对不起，本站不支持此类别");
+	 		}else{
+	 			$.ajax({
+            type: "post",
+            url: getRedisUrl,
+            timeout : 3000,
+            async: false,
+            success: function(data){
+            debugger;
+            	
+            	for(var i=0,l=data.length;i<l;i++){
+					var item = $.parseJSON(data[i]);
+					var keys = item.data;
+　　					for(var key in keys){
+						if(val == key){
+							sessionStorage.setItem(val+"h", data[i]);  
+							var server = location.pathname.split('/')[1];
+							window.location.href="http://"+location.host+"/"+server+"/content/title?type="+val;
+							return;
+						}
+
+　　			}
+}
+alert("对不起，您没有访问记录，无法访问缓存内容");
+            	//sessionStorage.getItem(decodeURI(value)+"h");			
+            }});
+	 		}
+            	
             });
 	
 		 $.ajax({
@@ -297,19 +480,63 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             dataType: "json",
             success: function(data){
             var flag=0;
-            debugger;
             	for(var i=0;i<data.types.length;i++){
             		if(data.types[i].hot == "0"){
             			flag++;
             			if(flag % 2 ==0){
-			            	$("#t1").tmpl(data.types[i]).appendTo($(".wel-left"));
+			            	$("#t1").tmpl(data.types[i]).appendTo($("#left1"));
             			}else{
-							$("#t2").tmpl(data.types[i]).appendTo($(".wel-right"));            			
+							$("#t2").tmpl(data.types[i]).appendTo($("#right1"));            			
             			}
             		}
             	}
             }});
-            setInterval(function() {
+            
+            
+            $.ajax({
+            type: "post",
+            url: webCollect,
+            timeout : 3000,
+            async: false,
+            dataType: "json",
+            success: function(data){
+            var flag=0;
+            	for(var i=0;i<data.types.length;i++){
+            			flag++;
+            			if(flag % 2 ==0){
+			            	$("#t4").tmpl(data.types[i]).appendTo($("#right2"));
+            			}else{
+							$("#t5").tmpl(data.types[i]).appendTo($("#left2"));            			
+            			}
+            	}
+            }});
+            
+            
+            
+            
+            $.ajax({
+            type: "post",
+            url: articleUrl,
+            timeout : 3000,
+            async: false,
+            dataType: "json",
+            success: function(data){
+            var flag=0;
+            	for(var i=0;i<data.length;i++){
+            			flag++;
+            			if(flag % 2 ==0){
+            			$("#t7").tmpl(data[i]).appendTo($("#right3"));
+			            	
+            			}else{
+							      $("#t6").tmpl(data[i]).appendTo($("#left3"));      			
+            			}
+            	}
+            }});
+            
+            
+            
+            
+            setTimeout(function() {
             	var u = window.location.href;
             if(u.indexOf("#collection")!=-1){
             	$("html, body").animate({  

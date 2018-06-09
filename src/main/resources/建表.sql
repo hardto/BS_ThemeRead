@@ -1,21 +1,12 @@
 SET SQL_SAFE_UPDATES = 0;
 
-delete from t_auth;
-delete from t_login;
-delete from t_role;
-delete from t_role_auth;
-delete from t_type;
-delete from t_user;
-delete from t_user_action;
-delete from t_user_article;
-delete from t_user_auths;
-delete from t_user_role;
-
 drop table if exists t_article_comment;
 
 drop table if exists t_article_resource;
 
 drop table if exists t_auth;
+
+drop table if exists t_colltype;
 
 drop table if exists t_login;
 
@@ -77,6 +68,20 @@ create table t_auth
 );
 
 /*==============================================================*/
+/* Table: t_colltype                                            */
+/*==============================================================*/
+create table t_colltype
+(
+   id                   varchar(64) not null,
+   user_id              varchar(128),
+   type_id              varchar(64),
+   col                  varchar(64) binary,
+   col2                 varchar(128),
+   create_time          date,
+   primary key (id)
+);
+
+/*==============================================================*/
 /* Table: t_login                                               */
 /*==============================================================*/
 create table t_login
@@ -101,7 +106,7 @@ create table t_recommend
    user_id              varchar(16),
    article_id           varchar(32),
    content              varchar(1024),
-   adds                varchar(512),
+   "add"                varchar(512),
    col                  varchar(64),
    col2                 varchar(128),
    create_time          date,
@@ -251,6 +256,12 @@ alter table t_article_comment add constraint FK_Reference_12 foreign key (user_i
 
 alter table t_article_resource add constraint FK_Reference_10 foreign key (article_id)
       references t_user_article (id) on delete restrict on update restrict;
+
+alter table t_colltype add constraint FK_Reference_16 foreign key (type_id)
+      references t_type (id) on delete restrict on update restrict;
+
+alter table t_colltype add constraint FK_Reference_17 foreign key (user_id)
+      references t_user (id) on delete restrict on update restrict;
 
 alter table t_login add constraint FK_Reference_1 foreign key (user_id)
       references t_user (id) on delete restrict on update restrict;

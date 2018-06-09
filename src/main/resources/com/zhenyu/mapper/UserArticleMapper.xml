@@ -172,4 +172,78 @@
       col2 = #{col2,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+  
+  
+  
+   <select id="getId" resultType="int">
+    select 
+    max(CAST(id AS SIGNED)) from t_user_article
+    </select>
+    
+    <select id="getArticleByIdAndTitle" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_article
+    where user_id = #{1}
+    and 
+    type_id = #{0}
+    and 
+    title = #{2}
+  </select>
+  
+    <select id="hasArticle" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_article
+    where user_id = #{0}
+    and 
+    type_id = #{1}
+  </select>
+  
+  <select id="getCollects" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_article
+    where user_id = #{0}
+    and 
+    col1 = '0'
+  </select>
+  
+  
+  
+  <select id="getCollectsByUser" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_article
+    where user_id = #{0}
+  </select>
+  
+  
+  
+  
+  <select id="getUaByTypeId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_article
+    where
+    type_id = #{0}
+  </select>  
+ 
+  <select id="getArticleByTypeIdAndUserId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_article
+    where
+    type_id = #{0}
+    and 
+    user_id = #{1}
+  </select>  
+  <select id="getArticleByTitle" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user_article
+    where title = #{0}
+  </select>
+  
+  
 </mapper>

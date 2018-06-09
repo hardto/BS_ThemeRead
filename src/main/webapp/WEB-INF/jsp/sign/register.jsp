@@ -29,6 +29,7 @@ body {
 	<div id="jss" class="container-fluid">
 		<form class="form-horizontal" role="form"
 			action="info" method="post">
+			
 			<div class="form-group">
 				<div class="col-sm-2"></div>
 				<label class="control-label col-sm-2" for="email">邮箱:</label>
@@ -84,6 +85,15 @@ body {
 					data-toggle="popover" data-content="验证码不正确">&nbsp;</span>
 			</div>
 			<div class="form-group">
+				<div class="col-sm-2"></div>
+				<label class="control-label col-sm-2" for="acco">账号:</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="acco" name="account"
+						placeholder="请输入您的账号">
+				</div>
+				<div class="col-sm-5"></div>
+			</div>
+			<div class="form-group">
 				<div class="col-sm-4"></div>
 				<div class="col-sm-4">
 
@@ -110,7 +120,7 @@ body {
 				if(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test(email) && /^1[3|4|5|8|7][0-9]\d{4,8}$/.test(phone)){
 								$.ajax({
 					type : "post",
-					url : "getCode",
+					url : "getCodee",
 					async : true,
 					data : {
 								"email" : email,
@@ -124,8 +134,8 @@ body {
 							$("div[class*=form-group]").eq(1).removeClass("has-error").removeClass("has-success").addClass("has-error");
 							$("#getcode").removeAttr("disabled");
 						}else{
-							$("div[class*=form-group]").eq(0).removeClass("has-error").removeClass("has-success").addClass("has-success");
-							$("div[class*=form-group]").eq(1).removeClass("has-error").removeClass("has-success").addClass("has-success");
+							/* $("div[class*=form-group]").eq(0).removeClass("has-error").removeClass("has-success").addClass("has-success");
+							$("div[class*=form-group]").eq(1).removeClass("has-error").removeClass("has-success").addClass("has-success"); */
 							window.alert("邮件已经发送");
 						}
 					}

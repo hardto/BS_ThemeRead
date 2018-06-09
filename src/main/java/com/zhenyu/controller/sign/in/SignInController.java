@@ -48,11 +48,13 @@ public class SignInController {
 			um= signService.CommonCheckAccount(typeAnditem, pwd);
 			um.setSuccess(true);
 			if(um.getUser()!=null){
+				req.getSession().setAttribute("USERNAME", um.getUser().getAccount());
 				if(city.equals(um.getUser().getCol1())){
 					signService.insertLoginStatus(um.getUser().getId(), ip);
 					um.setStatus("0");
 					um.setMsg("登陆成功");
 					map.addAttribute("USERID", um.getUser().getId());
+					System.out.println(um.getUser().getAccount());
 				}else{
 					um.setStatus("-1");
 					um.setMsg("危险登陆");

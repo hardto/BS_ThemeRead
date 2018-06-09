@@ -123,7 +123,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     left: 50%;
     line-height: 56px;
     color: #fff;
-    padding-left: 60px;
+    padding-left: 38px;
     font-size: 15px;
     background: #000 url(../loading/image/loading.gif) no-repeat 10px 50%;
     opacity: 0.7;
@@ -167,6 +167,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li class=""><a href="all" style="letter-spacing: 5px">所有</a></li>
                     <li class=""><a href="others" style="letter-spacing: 5px">其他</a></li>
                     <li class=""><a href="robot">Robe</a></li>
+                    <li class="dropdown">
+						<a href="" style="letter-spacing: 5px" class="dropdown-toggle" data-toggle="dropdown">
+							我的<span style="color: #CCCCCC;"class="caret"></span>
+						</a>
+						 <ul class="dropdown-menu">
+                        	<li><a href="mine#section1">个人信息</a></li>
+                        	<li class="divider"></li>
+                        	<li><a href="mine#section2">反馈</a></li>
+                        	<li class="divider"></li>
+                        	<li><a href="javascript:void(0)" id="exit">退出</a></li>
+                    	</ul>
+					</li>
                 </ul>
             </div>
         </div>
@@ -239,7 +251,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             aria-labelledby="myModalLabel" aria-hidden="true">
             <div id="loading" class="loading">加载中。。。</div>
 </div>
-
+<div id="myModal2" class="modal fade" data-keyboard="false"
+            data-backdrop="static" data-role="dialog"
+            aria-labelledby="myModalLabel" aria-hidden="true">
+            <div id="loading" class="loading">暂未开放。。。</div>
+</div>
 <script type="text/x-jquery-tmpl" id="t3">
 			<!--//模板在jsp中需要转义-->
 			<h2>${'${'}mainTitle}</h2>
@@ -248,14 +264,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>		
 <script type="text/javascript">
     $(document).ready(function () {
+    
     	$('#myModal').modal('show');
         value = window.location.search.split("=")[1]
         var url = "http://" +location.hostname+":8888"+"/resource?type="+value;
 		
 		var server = location.pathname.split('/')[1];
+		var reset = "http://"+location.host+"/"+server+"/content/logout";
+	
 		var web = "http://"+location.host+"/"+server+"/content/posoition";
 	var web2 = "http://"+location.host+"/"+server+"/content/getRecommend";
-	console.log(web2);
+	$("#exit").click(function(){
+		 $.ajax({
+            type: "post",
+            url: reset,
+            timeout : 3000,
+            async: false,
+            success: function(data){
+            
+            }});
+            window.location.href=indexUrl;
+	});
+	$.ajax({
+            type: "get",
+            url: web,
+            async: false,
+            data : {
+            	"name" : decodeURI(value)
+            },
+            success: function(data){
+            	if("问答" == data || "评论"==data){
+            		$('#myModal').modal('hide');
+            		$('#myModal2').modal('show');
+            	}
+             	$("<a href='categories?id=5'><h4>"+data+"</h4></a>&nbsp;&nbsp;>&nbsp;>&nbsp;&nbsp;<h4>"+decodeURI(value)+"</h4>").appendTo($("header"));
+             }
+        });
 		 $.ajax({
             type: "post",
             url: web2,
@@ -267,18 +311,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             	$("#t3").tmpl(data).appendTo($("#recommend"));   
             	$("#recommend+a").prop("href","readRecommend?id="+data.id);			
             }});
-		$.ajax({
-            type: "get",
-            url: web,
-            async: false,
-            data : {
-            	"name" : decodeURI(value)
-            },
-            success: function(data){
-             	$("<a href='categories?id=5'><h4>"+data+"</h4></a>&nbsp;&nbsp;>&nbsp;>&nbsp;&nbsp;<h4>"+decodeURI(value)+"</h4>").appendTo($("header"));
-             }
-        });
+		
         var stringData = sessionStorage.getItem(decodeURI(value));
+        debugger;
+        var datah = sessionStorage.getItem(decodeURI(value)+"h");
+        if(datah != null && datah != undefined && datah != ""){
+        	dealData(datah);
+        }else{
         if(stringData==null || stringData == "" ){
         	$.ajax({
             type: "get",
@@ -287,7 +326,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             dataType: 'jsonp',
             jsonpCallback: "dealData",
              success: function(data){
-            
+            	
              }
         });
         	
@@ -295,12 +334,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         dealData(JSON.parse(stringData));
         }
         
+        }
+                
 
 
     });
-    function dealData(data){
     
-    	sessionStorage.setItem(decodeURI(value), JSON.stringify(data));
+    function dealData(data){
+    var datah = sessionStorage.getItem(decodeURI(value)+"h");
+     if(datah == null || datah == undefined || datah == ""){
+    	if(sessionStorage.getItem(decodeURI(value)) == null || sessionStorage.getItem(decodeURI(value)) == "" || sessionStorage.getItem(decodeURI(value)) == undefined){
+    		debugger;
+    		toRedis(data);
+    	}
+    	sessionStorage.setItem(decodeURI(value), JSON.stringify(data));    	
+        }else{
+        data = JSON.parse(datah);
+        }
+   	
         debugger;
         var json = data.data[decodeURI(value)]
 			debugger;
@@ -316,6 +367,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             }
         afterLoad();
+        sessionStorage.setItem(decodeURI(value)+"h", "");
 
     }
     function afterLoad(){
@@ -367,6 +419,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
         });
          $('#myModal').modal('hide');
+    }
+    function toRedis(datas){
+    debugger;
+            var server = location.pathname.split('/')[1];
+		    var toRedisUrl = "http://"+location.host+"/"+server+"/content/toRedis";
+    		$.ajax({
+            type: "post",
+            url: toRedisUrl,
+            async: false,
+            data:{"data":JSON.stringify(datas)},
+            success: function(data){
+            console.log("已缓存");
+            }
+        });
     }
 </script>
 <!--/copy rights-->

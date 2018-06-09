@@ -1,8 +1,12 @@
 package com.zhenyu.mapper;
 
-import com.zhenyu.model.ArticleComment;
+import org.mybatis.spring.annotation.MapperScan;
 
+import com.zhenyu.model.ArticleComment;
+@MapperScan
 public interface ArticleCommentMapper {
+	int getId();
+	
     int deleteByPrimaryKey(String id);
 
     int insert(ArticleComment record);
